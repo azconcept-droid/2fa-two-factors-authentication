@@ -33,9 +33,11 @@ app.get("/", async (req, res) => {
 
   const secret = generateSecret();
 
+  const otp = generateOTP(secret);
+
   const qrcode = await generateQRCode(secret);
 
-  res.render("index", { secret, qrcode });
+  res.render("index", { secret, qrcode, otp });
 })
 
 app.post("/verify", (req, res) => {
